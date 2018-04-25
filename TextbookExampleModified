@@ -61,4 +61,4 @@ main()
 #   and final error sequence line: selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: [name="q"]
 #
 #   My question: Did this error occur because the element was renamed? Or is this problem due to incorrect lines in the example code?
-#
+#   How can I get a listing of the names of elements?
