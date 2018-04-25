@@ -1,0 +1,64 @@
+#  Using Python 3.6.4, I modified a textbook example with primative diagnostic print statements to track execution.
+#  
+def main():    import selenium
+print ("1")
+from selenium import webdriver
+print ("2")
+from selenium.webdriver.common.keys import Keys
+print ("3")
+
+# create a new Firefox session
+driver = webdriver.Firefox()
+print ("4")
+driver.implicitly_wait(30)
+print ("5")
+driver.maximize_window()
+print ("6")
+
+# navigate to the application home page
+driver.get("http://demo.magentocommerce.com/")
+print ("7")
+driver.implicitly_wait(30)
+print ("8")
+
+# get the search textbox
+search_field = driver.find_element_by_name("q")
+print ("9")
+search_field.clear()
+print ("10")
+
+# enter search keyword and submit
+search_field.send_keys("phones")
+print ("11")
+search_field.submit()
+print ("12")
+
+# get all the anchor elements which have product names displayed 
+# currently on result page using find_elements_by_xpath method
+products = driver.find_elements_by_xpath("//h2[@class='product-name']/a")
+print ("13")
+
+# get the number of anchor elements found
+print ("Found",+ str(len(products)) + " products:")
+print ("14")
+
+# iterate through each anchor element and print the text that is name of the product
+for product in products: print (product.text)
+print ("15")
+
+# close the browser window
+driver.quit()
+print ("16")
+
+main()
+
+#  My execution passes the "print ("8") statement but gets no farther.
+#  The next line: search_field = driver.find_element_by_name("q") 
+#   causes an error sequence:  return self.find_element(by=By.NAME, value=name)
+#   next error sequence line:  'value': value})['value']
+#   next error sequence line:  self.error_handler.check_response(response)
+#   next error sequence line:  raise exception_class(message, screen, stacktrace)
+#   and final error sequence line: selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: [name="q"]
+#
+#   My question: Did this error occur because the element was renamed? Or is this problem due to incorrect lines in the example code?
+#
